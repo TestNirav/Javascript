@@ -1,7 +1,7 @@
 # Yalgaar Javascript SDK
-# Description
+## Description
 Used master branch for get latest SDK
-# Usage
+## Usage
 Yalgaar Javascript Document [https://www.yalgaar.io/documentation/javascript-api]
-# License
+## License
 MIT License
