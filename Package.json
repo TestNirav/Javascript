@@ -1,0 +1,20 @@
+{
+  "name": "Javascript SDK",
+  "version": "1.0.0",
+  "author": "Yalgaar",
+  "description": "Real-time publish and Subscribe Messages with Yalgaar",
+  "main": "./lib/Web/yalgaar.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TestOrgRepo711/Javascript"
+  },
+  "keywords": [
+    "cloud",
+    "publish",
+    "subscribe",
+    "websockets",
+    "real-time",
+    "messaging"
+  ],
+  "license": "MIT",
+}
