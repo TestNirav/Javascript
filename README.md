@@ -1,5 +1,5 @@
 # Yalgaar Javascript SDK
-Create amazing realtime applications easily with Yalgaar
+Create amazing realtime applications easily with Yalgaar Javascript
 ## Description
 Use master branch for get latest SDK
 ## Usage
