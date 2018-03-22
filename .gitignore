@@ -1,0 +1,8 @@
+.DS_Store
+javascript.iml
+*.js-e
+*.json-e
+upload/*
+coverage/
+.idea
+*.iml
