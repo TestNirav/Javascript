@@ -1,6 +1,4 @@
 .DS_Store
-javascript.iml
-*.js-e
 *.json-e
 Example/*
 upload/*
