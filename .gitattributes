@@ -1,2 +1,2 @@
 *.js linguist-language=Javascript
-Example/*.html linguist-vendored
+Example/YalgaarExample.html linguist-vendored
