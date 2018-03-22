@@ -1,6 +1,6 @@
 .DS_Store
 *.json-e
-Example/*
+Example/YalgaarExample.html
 upload/*
 coverage/
 .idea
