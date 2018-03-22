@@ -2,7 +2,7 @@
 javascript.iml
 *.js-e
 *.json-e
-*.html
+Example/*
 upload/*
 coverage/
 .idea
