@@ -11,6 +11,7 @@
             ConnectToYalgaar({
                 ClientKey: document.getElementById("txtClientKey").value,
                 SSL: false,
+				UUID:document.getElementById("txtUUID").value,
                 Callback: function (acknowledgment) {
                     console.log(acknowledgment);
                 },
@@ -56,19 +57,9 @@
         function ClearMessage() {
             $('#txtDisplayMsg').val('');
         }
-
-        function GetMsgHistory() {
-            GetHistory({
-                ChannelName: $('#txtSubChannelName').val(),
-                MessageCount: 10,
-                Callback: function (message, err) {
-                    if (message != "") {
-                        var result = "";
-                        document.getElementById("txtDisplayMsg").value += message + "\n";
-                    }
-                }
-            });
-        }
+		function DisConnectYalgaar(){
+			DisconnectToYalgaar();
+		}
     </script>
 </head>
 <body>
@@ -76,26 +67,25 @@
         <tr>
             <td style="vertical-align:top;">
                 <div class="row">
-                    <label>Client Key</label>
-                    <input type="text" id="txtClientKey" value="" />&nbsp;&nbsp;&nbsp;
-
+                    <label>Client Key:</label>
+                    <input type="text" id="txtClientKey" value="" /><br /><br />
+					<label>UUID:</label>
+                    <input type="text" id="txtUUID" value="YalgaarJSUUID" /><br /><br />
                     <input type="button" id="btnConnect" name="btnConnect" value="Connect" onclick="ConnectYalgaar()" />
+					<input type="button" id="btnDisConnect" name="btnDisConnect" value="Disconnect" onclick="DisConnectYalgaar()" />
                     <br /><br />
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <label>Subscribe Channel</label>
+                        <label>Subscribe Channel:</label>
                         <input type="text" id="txtSubChannelName" name="txtSubChannelName" value="YourChannel" /><br /><br />
                         <input type="button" value="SubScribe" id="btnSubScribe" onclick="SubMessage()" />&nbsp;&nbsp;&nbsp;
                         <input type="button" value="UnSubscribe" id="btnUnSubscribe" onclick="UnSubMessage()" /><br /><br />
-                        <label>Message</label>
+                        <label>Message:</label>
                         <input type="text" id="txtmessage" name="txtmessage" value="Yalgaar Message" />&nbsp;&nbsp;&nbsp;
-                        <input type="button" id="btnSendMsg" value="Send Message" onclick="PubMessage()" />
+                        <input type="button" id="btnSendMsg" value="Publish" onclick="PubMessage()" />
                         <br /><br />
                     </div>
-                </div>
-                <div class="row">
-                    <input type="button" id="btnShowHistory" value="ShowHistory" onclick="GetMsgHistory()" />
                 </div>
             </td>
             <td>
