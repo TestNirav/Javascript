@@ -1,40 +1,112 @@
-<html>
-    <head>
-        <script src="yalgaar-v1.0.0.js" type="text/javascript"> </script>
-        <script type="text/javascript">
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Site.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/yalgaar-v1.0.0.js"></script>
+    <script type="text/javascript">
+        function ConnectYalgaar() {
             ConnectToYalgaar({
-                ClientKey: 'ClientKey',
+                ClientKey: document.getElementById("txtClientKey").value,
                 SSL: false,
                 Callback: function (acknowledgment) {
-                    alert(acknowledgment);
-                    SubscribeMessage2();
-                    PublishMessage2();
+                    console.log(acknowledgment);
                 },
                 Error: function (err) {
-                    console.log(err);
+                    alert(err);
                 }
             });
-            function PublishMessage2() {
-                PublishMessage({
-                    ChannelName: 'YourChannel',
-                    Message: 'This is Yalgaar WebSocket SDK Example',
-                    Callback: function (acknowledgment) {
-                    if (acknowledgment)
+        }
+        function PubMessage() {
+            PublishMessage({
+                ChannelName: document.getElementById("txtSubChannelName").value,
+                Message: document.getElementById("txtmessage").value,
+                Callback: function (acknowledgment) {
+                    alert(acknowledgment);
+                }
+            });
+        }
+        function SubMessage() {
+            SubscribeMessage({
+                ChannelName: $('#txtSubChannelName').val(),
+                Callback: function (message, acknowledgment) {
+                    if (acknowledgment != "") {
                         console.log(acknowledgment);
                     }
-                });
-            }
-            function SubscribeMessage2() {
-                SubscribeMessage({
-                    ChannelName: 'YourChannel',
-                    Callback: function (message, channel, acknowledgment) {
-                    if (acknowledgment)
-                        alert(acknowledgment);
-                    if (message)
-                        alert(message);
+                    if (message != "") {
+                        document.getElementById("txtDisplayMsg").value += message + "\n";
                     }
-                });
-            }
-        </script>
-    </head>
+                },
+                CallbackPresence: function (message, acknowledgment) {
+                    console.log(message);
+                    document.getElementById("txtDisplayMsg").value += message + "\n";
+                }
+            });
+        }
+        function UnSubMessage() {
+            UnsubscribeMessage({
+                ChannelName: $('#txtSubChannelName').val(),
+                Callback: function (acknowledgment) {
+                    console.log(acknowledgment);
+                }
+            });
+        }
+        function ClearMessage() {
+            $('#txtDisplayMsg').val('');
+        }
+
+        function GetMsgHistory() {
+            GetHistory({
+                ChannelName: $('#txtSubChannelName').val(),
+                MessageCount: 10,
+                Callback: function (message, err) {
+                    if (message != "") {
+                        var result = "";
+                        document.getElementById("txtDisplayMsg").value += message + "\n";
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <table style="border:none;">
+        <tr>
+            <td style="vertical-align:top;">
+                <div class="row">
+                    <label>Client Key</label>
+                    <input type="text" id="txtClientKey" value="" />&nbsp;&nbsp;&nbsp;
+
+                    <input type="button" id="btnConnect" name="btnConnect" value="Connect" onclick="ConnectYalgaar()" />
+                    <br /><br />
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Subscribe Channel</label>
+                        <input type="text" id="txtSubChannelName" name="txtSubChannelName" value="YourChannel" /><br /><br />
+                        <input type="button" value="SubScribe" id="btnSubScribe" onclick="SubMessage()" />&nbsp;&nbsp;&nbsp;
+                        <input type="button" value="UnSubscribe" id="btnUnSubscribe" onclick="UnSubMessage()" /><br /><br />
+                        <label>Message</label>
+                        <input type="text" id="txtmessage" name="txtmessage" value="Yalgaar Message" />&nbsp;&nbsp;&nbsp;
+                        <input type="button" id="btnSendMsg" value="Send Message" onclick="PubMessage()" />
+                        <br /><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="button" id="btnShowHistory" value="ShowHistory" onclick="GetMsgHistory()" />
+                </div>
+            </td>
+            <td>
+                <div class="row">
+                    <textarea id="txtDisplayMsg" rows="20" cols="80" style="width:700px"></textarea>
+                    <br />
+                    <br />
+                    <input type="button" id="btnClear" value="Clear" onclick="ClearMessage()" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
 </html>
