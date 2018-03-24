@@ -6,6 +6,39 @@
     <link href="Site.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.10.2.js"></script>
     <script src="Scripts/yalgaar-v1.0.0.js"></script>
+	<style>
+        body{
+            background:#ccc;
+            font-family:Arial;
+            font-size:16px;
+        }
+        #wrapper{
+            width:500px;
+            margin:0 auto;
+            text-align:center
+        }
+        input[type='text']
+        {
+            width:150px;
+            height:25px;
+            font-size:14px;
+        }
+        select{
+            height:25px;
+        }
+        table{
+            width:100%;
+            text-align:left;
+        }
+        table tr td{
+            padding:10px 0;
+        }
+        input[type='button']
+        {
+            font-size:16px;
+            padding:5px 10px;
+        }
+    </style>
     <script type="text/javascript">
         function ConnectYalgaar() {
             ConnectToYalgaar({
@@ -63,7 +96,7 @@
     </script>
 </head>
 <body>
-<h1 style="text-align:center">Yalgaar Javascript SDK Example</h1>
+<!-- <h1 style="text-align:center">Yalgaar Javascript SDK Example</h1>
     <table style="border:none;" align="center">
         <tr>
             <td style="vertical-align:top;">
@@ -98,6 +131,54 @@
                 </div>
             </td>
         </tr>
-    </table>
+    </table> -->
+<div id="wrapper">
+        <h2>Yalgaar Javascript SDK Example</h2>
+        <table>
+            <tr>
+			<td>
+                    Client Key:&nbsp;&nbsp;
+                    <input id="txtClientKey" name="txtClientKey" type="text"/>
+                </td>
+                <td>
+                    UUID:&nbsp;&nbsp;
+                    <input id="txtUUID" type="text" value="YalgaarJSUUID" />
+                </td>
+                
+            </tr>
+			 <tr>
+                <td colspan="2">
+                    <input id="btnConnect" type="button" value="Connect" onclick="ConnectYalgaar()" /> 
+                    <input id="btnDisconnect" type="button" value="Disconnect" onclick="DisConnectYalgaar()" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Channel Name:&nbsp;&nbsp;
+                    <input id="txtSubChannelName" type="text" value="YourChannel" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input id="btnSub" type="button" value="Subscribe" onclick="SubMessage()" />
+                    <input id="btnUnSub" type="button" value="Unsubscribe" onclick="UnSubMessage()" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Message :&nbsp;&nbsp;
+                    <input id="txtmessage" type="text" style="width:250px;" />
+                    &nbsp;&nbsp;
+                    <input id="btnPub" type="button" value="Publish" onclick="PubMessage()" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtDisplayMsg" class="aspNetDisabled" style="height:200px;width:700px;" disabled="disabled"></textarea>
+                    <input type="button" name="btnClear" value="Clear" onclick="ClearMessage()" />
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
